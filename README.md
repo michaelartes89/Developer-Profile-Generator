@@ -1,8 +1,8 @@
 # Developer-Profile-Generator
 This project is a command-line application that dynamically generates a PDF profile from a Git Hub Username.
 
-# Instruction 
-To use this application, the user needs to optain an access token from GitHub to access the GitHub API. User will be prompter to enter token when the application runs. 
+# Instructions
+To use this application, the user needs to optain an access token from GitHub to access the GitHub API. User will be see prompt to enter token when the application runs. 
 
 # Developer Story
 This project is the first assignment of the backend developement portion of the JHU Fullstack bootcamp. This project involved using node.js to write javascript which runs in the terminal rather than in the browser. At this point I am personally more interested in frontend development but I definitly see the advantages of gaining additonal knowledge of the backend processes that are involved in the overall fied of development. 
