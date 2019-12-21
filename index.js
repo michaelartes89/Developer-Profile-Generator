@@ -8,20 +8,19 @@ const questions = [
     {
         type: "input",
         message: "What is your GitHub user name?",
-        name: "username",
-        default: "kshep425"
+        name: "username"
     },
     {
         type: "input",
         message: "What is your favorite color?",
         name: "color",
-        default: "tan"
+        default: "blue"
     },
     {
         type: "input",
         message: "Enter your github access token",
         name: "token",
-        default: token
+        
         
         
     }
