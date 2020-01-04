@@ -14,7 +14,7 @@ const questions = [
         type: "input",
         message: "What is your favorite color?",
         name: "color",
-        default: "blue"
+        default: "white"
     },
     {
         type: "input",
@@ -41,13 +41,19 @@ function generateHTML(answers){
     </head>
     <body>
     <h1>${answers.username}</h1>
-    <h1>${answers.bio}</h1>
-    <h1>${answers.location}</h1>
-    <h1>${answers.num_repositories}</h1>
-    <a href="${answers.google_map}"> Location </a>
-    
     <img src=${answers.avatar}>
-    <a href=${answers.blog} target="_blank"></a>
+    <h1>${answers.bio}</h1>
+ 
+    <a href=${answers.blog} target="_blank">BLOG:${answers.blog}</a>
+    <a href="${answers.google_map}">${answers.location}</a>
+    <h1>${answers.num_repositories}</h1>
+    <h1>Followers:${answers.followers}</h1>
+    <h1>Following:${answers.following}</h1>
+
+
+    
+   
+    
     </body>
     </html>`
 }
@@ -68,16 +74,16 @@ inquirer
         await axios
         .get(`https://api.github.com/users/${response.username}/repos?per_page=100`)
         .then(function(axios_response){
-           // console.log(Object.keys(axios_response))
+         //  console.log(Object.keys(axios_response))
             profileObj.num_repositories = axios_response.data.length
            // console.log(num_repositories)
             axios_response.data.forEach(repo => {
-              //  console.log(repo.name, repo.stargazers_count)
+              
                 num_stargazers += repo.stargazers_count
-
+                
             });
             profileObj.num_stargazers = num_stargazers
-           // console.log(num_stargazers)
+            console.log(num_stargazers)
         })
         .catch(function(err) {
             console.log(err)
@@ -88,7 +94,7 @@ inquirer
         .get(`https://api.github.com/users/${response.username}/followers`)
         .then(function(axios_response){
             num_followers = axios_response.data.length
-          //  console.log("num_followers: "+ num_followers)
+            console.log("num_followers: "+ num_followers)
         })
         .catch(function(err){
             console.log(err)
@@ -99,17 +105,22 @@ inquirer
         .get(`https://api.github.com/users/${response.username}/following`)
         .then(function(axios_response){
             num_following = axios_response.data.length
-           // console.log("num_following: " + num_following)
+           console.log("num_following: " + num_following)
         })
         
       await axios
       .get(`https://api.github.com/users/${response.username}`)
       .then(function(response){
-          profileObj["blog"] = response.data.blog
+       console.log(response.data)
+          profileObj.blog = response.data.blog
           profileObj.location = response.data.location
           profileObj.google_map = "https://www.google.com/maps/place/" + response.data.location.replace(/\s+/g,'+')
           profileObj.bio = response.data.bio
           profileObj.avatar = response.data.avatar_url
+          profileObj.followers=num_followers;
+          profileObj.following = num_following;
+          
+
           // console.log(response.data)
         })
         // let file÷=name = `${response.username}_profile.html`
