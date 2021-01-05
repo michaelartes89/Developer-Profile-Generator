@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/michaelartes89/Developer-Profile-Generator#readme",
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "html-pdf": "^2.2.0",
     "inquirer": "^7.0.0"
   }
